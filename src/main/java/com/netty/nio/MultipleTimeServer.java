@@ -27,10 +27,10 @@ public class MultipleTimeServer implements Runnable {
      */
     public MultipleTimeServer(int port) {
         try {
-            selector = Selector.open();
             serverSocketChannel = ServerSocketChannel.open();
             serverSocketChannel.configureBlocking(false);
             serverSocketChannel.socket().bind(new InetSocketAddress(port), 1024);
+            selector = Selector.open();
             serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
             System.out.println("The timeServer start in port " + port);
         } catch (IOException e) {
